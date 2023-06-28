@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualBridge.Core", "VirtualBridge.Core\VirtualBridge.Core.csproj", "{976DE77D-F30A-4149-9425-8A7A8973DC28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualBridge.Console", "VirtualBridge.Console\VirtualBridge.Console.csproj", "{759D8820-E7AE-4616-90C7-B539501B3B19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualBridge.PluginApi", "VirtualBridge.PluginApi\VirtualBridge.PluginApi.csproj", "{527A9E37-3D81-4178-A588-83C065B783BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualBridge.ExamplePlugin", "VirtualBridge.ExamplePlugin\VirtualBridge.ExamplePlugin.csproj", "{0618B96E-951E-4E23-A4EF-5D6AA06F9CF0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{976DE77D-F30A-4149-9425-8A7A8973DC28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{976DE77D-F30A-4149-9425-8A7A8973DC28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{976DE77D-F30A-4149-9425-8A7A8973DC28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{976DE77D-F30A-4149-9425-8A7A8973DC28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{759D8820-E7AE-4616-90C7-B539501B3B19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{759D8820-E7AE-4616-90C7-B539501B3B19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{759D8820-E7AE-4616-90C7-B539501B3B19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{759D8820-E7AE-4616-90C7-B539501B3B19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{527A9E37-3D81-4178-A588-83C065B783BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{527A9E37-3D81-4178-A588-83C065B783BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{527A9E37-3D81-4178-A588-83C065B783BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{527A9E37-3D81-4178-A588-83C065B783BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0618B96E-951E-4E23-A4EF-5D6AA06F9CF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0618B96E-951E-4E23-A4EF-5D6AA06F9CF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0618B96E-951E-4E23-A4EF-5D6AA06F9CF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0618B96E-951E-4E23-A4EF-5D6AA06F9CF0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
