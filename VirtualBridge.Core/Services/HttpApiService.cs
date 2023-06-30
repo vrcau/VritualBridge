@@ -24,6 +24,9 @@ public class HttpApiService : IHostedService
         _webserver.Events.RequestReceived += (sender, args) =>
             _logger.LogDebug("{Client}:{Port} {Method} {Url} {@Query}",
             args.Ip, args.Port, args.Method, args.Url, args.Query);
+        
+        // Routes
+        _webserver.Routes.Static.Add(HttpMethod.GET, "/messages/pull", PullMessage);
     }
 
     private async Task MetaDataRoute(HttpContext context)
@@ -47,10 +50,10 @@ public class HttpApiService : IHostedService
         }
     }
 
-    [StaticRoute(HttpMethod.GET, "/messages/pull")]
-    public static async Task PullMessage(HttpContext context)
+    private async Task PullMessage(HttpContext context)
     {
-        var content = JsonSerializer.Serialize(Array.Empty<DataTransferObject>());
+        var content = JsonSerializer.Serialize(_dataTransferService.DataTransferObjects);
+        _dataTransferService.ClearAllData();
 
         context.Response.StatusCode = 200;
         context.Response.ContentType = "application/json";

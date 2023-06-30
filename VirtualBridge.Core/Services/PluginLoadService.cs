@@ -11,7 +11,7 @@ public class PluginLoadService : IHostedService
     private readonly ILoggerFactory _loggerFactory;
     private readonly DataTransferService _dataTransferService;
 
-    private List<IVirtualBridgePlugin> _plugins = new();
+    private readonly List<IVirtualBridgePlugin> _plugins = new();
 
     public PluginLoadService(ILogger<PluginLoadService> logger,
         DataTransferService dataTransferService,
@@ -48,7 +48,7 @@ public class PluginLoadService : IHostedService
                             {
                                 await plugin.LoadAsync(_dataTransferService, _loggerFactory.CreateLogger(pluginType.Name));
                                 _plugins.Add(plugin);
-                                _logger.LogInformation("Loaded Plugin: {DisplayName} - {Description}",
+                                _logger.LogInformation("Plugin Loaded: {DisplayName} - {Description}",
                                     plugin.DisplayName, plugin.Description);
                             }
                             catch (Exception e)

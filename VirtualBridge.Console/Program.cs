@@ -3,6 +3,7 @@ using Microsoft.Extensions.Hosting;
 using Serilog;
 using Serilog.Templates;
 using Serilog.Templates.Themes;
+using VirtualBridge.Core;
 using VirtualBridge.Core.Services;
 
 var logTemplate =
@@ -16,13 +17,7 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 var host = new HostBuilder()
-    .ConfigureServices((_, services) =>
-    {
-        services.AddHostedService<VRChatLogWatcherService>();
-        services.AddHostedService<PluginLoadService>();
-        services.AddHostedService<HttpApiService>();
-        services.AddSingleton<DataTransferService>();
-    })
+    .AddVirtualBridge()
     .UseSerilog()
     .Build();
     

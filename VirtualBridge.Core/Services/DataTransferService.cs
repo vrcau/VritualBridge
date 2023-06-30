@@ -10,16 +10,33 @@ public class DataTransferService : IDataTransferService
     public const string SupportedProtocolVersion = "1";
 
     private readonly ILogger<DataTransferService> _logger;
+    private readonly VRChatLogWatcherService _vrchatLogWatcherService;
 
     private readonly List<DataTransferObject> _dataTransferObjects = new();
     public IReadOnlyList<IDataTransferObject> DataTransferObjects => _dataTransferObjects.AsReadOnly();
 
     public event EventHandler<IDataTransferObject>? ReceivedData;
 
-    public DataTransferService(ILogger<DataTransferService> logger)
+    public DataTransferService(ILogger<DataTransferService> logger, VRChatLogWatcherService vrchatLogWatcherService)
     {
         _logger = logger;
+        _vrchatLogWatcherService = vrchatLogWatcherService;
+
+        _vrchatLogWatcherService.LogChanged += (sender, list) =>
+        {
+            foreach (var logInfo in list.OrderBy(log => log.time))
+            {
+                ProcessData(logInfo.content);
+            }
+        };
+
+        for (int i = 0; i < 10; i++)
+        {
+            SendDataToGame($"data: {i}", "test");
+        }
     }
+
+    public void ClearAllData() => _dataTransferObjects.Clear();
 
     public void SendDataToGame(object content, string type)
     {
@@ -35,7 +52,7 @@ public class DataTransferService : IDataTransferService
         _logger.LogInformation("Send data to game: {@Dto}", dto);
     }
 
-    public void ProcessData(string rawContent)
+    private void ProcessData(string rawContent)
     {
         if (!rawContent.StartsWith("[vbdt]")) return;
 
