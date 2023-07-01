@@ -37,5 +37,5 @@ jobs:
       with:
         files: virtual-bridge-win-x64.zip
         prerelease: true
-        tag_name: dev-build-{{github.run_number}}
+        tag_name: dev-build-${{ github.run_number }}
         generate_release_notes: true
