@@ -1,0 +1,38 @@
+name: Build & Release
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+    - name: Build
+      run: dotnet publish VirtualBridge.Console -r win-x64 --configuration Release --no-self-contained /p:PublishSingleFile=true -o publish
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.2
+      with:
+        name: VirtualBridge
+        path: publish
+    - name: Zip Release
+      uses: TheDoctor0/zip-release@a24011d8d445e4da5935a7e73c1f98e22a439464
+      with:
+        filename: virtual-bridge-win-x64.zip
+        path: publish
+        type: zip
+        
+    - name: Github Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: virtual-bridge-win-x64.zip
+        prerelease: true
+        tag_name: dev-build-{{github.run_number}}
+        generate_release_notes: true
