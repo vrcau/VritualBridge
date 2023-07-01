@@ -14,6 +14,7 @@
       <PackageReference Include="Serilog.Expressions" Version="3.4.1" />
       <PackageReference Include="Serilog.Extensions.Hosting" Version="7.0.0" />
       <PackageReference Include="Serilog.Extensions.Logging" Version="7.0.0" />
+      <PackageReference Include="Serilog.Settings.Configuration" Version="7.0.0" />
       <PackageReference Include="Serilog.Sinks.Console" Version="4.1.0" />
       <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
       <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
@@ -21,6 +22,15 @@
 
     <ItemGroup>
       <ProjectReference Include="..\VirtualBridge.Core\VirtualBridge.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="appsettings.Development.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
