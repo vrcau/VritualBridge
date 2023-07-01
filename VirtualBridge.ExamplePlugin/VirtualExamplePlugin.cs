@@ -17,6 +17,13 @@ public class VirtualExamplePlugin : IVirtualBridgePlugin
         _logger = logger;
         
         _logger.LogInformation("VirtualExamplePlugin loaded!");
+        
+        
+        for (var i = 0; i < 10; i++)
+        {
+            _dataTransferService.SendDataToGame($"data: {i}", "test");
+        }
+        
         return Task.CompletedTask;
     }
 

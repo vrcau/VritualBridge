@@ -29,11 +29,6 @@ public class DataTransferService : IDataTransferService
                 ProcessData(logInfo.content);
             }
         };
-
-        for (int i = 0; i < 10; i++)
-        {
-            SendDataToGame($"data: {i}", "test");
-        }
     }
 
     public void ClearAllData() => _dataTransferObjects.Clear();
