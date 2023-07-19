@@ -41,7 +41,7 @@ public class DataTransferService : IDataTransferService
         {
             Version = SupportedProtocolVersion,
             Data = content,
-            TimeStamp = DateTimeOffset.Now,
+            TimeStamp = DateTimeOffset.Now.ToUnixTimeMilliseconds(),
             Type = type
         };
 
@@ -70,8 +70,8 @@ public class DataTransferService : IDataTransferService
             
             if (registerOption.Type != null)
             {
-                registerOption.Delegate.DynamicInvoke(JsonSerializer.Deserialize(content,
-                    typeof(DataTransferObject<>).MakeGenericType(registerOption.Type)));
+                var type = typeof(DataTransferObject<>).MakeGenericType(registerOption.Type);
+                registerOption.Delegate.DynamicInvoke(JsonSerializer.Deserialize(content, type));
                     
                 return;
             }

@@ -5,7 +5,7 @@ namespace VirtualBridge.PluginApi;
 public interface IDataTransferObject
 {
     [JsonPropertyName("version")] public string Version { get; }
-    [JsonPropertyName("timestamp")] public DateTimeOffset TimeStamp { get; }
+    [JsonPropertyName("timestamp")] public long TimeStamp { get; }
     [JsonPropertyName("type")] public string Type { get; }
     [JsonPropertyName("data")] public object? Data { get; }
 }
