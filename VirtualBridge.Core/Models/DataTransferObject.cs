@@ -15,3 +15,5 @@ public record DataTransferObject<T> : DataTransferObject, IDataTransferObject<T>
 {
     [JsonPropertyName("data")] public new T? Data  { get; init; }
 }
+
+public record DataTransferReceiverRegisterOption(Delegate Delegate, Type? Type = null);

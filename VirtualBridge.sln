@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualBridge.PluginApi", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualBridge.ExamplePlugin", "VirtualBridge.ExamplePlugin\VirtualBridge.ExamplePlugin.csproj", "{0618B96E-951E-4E23-A4EF-5D6AA06F9CF0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualAware.Plugin", "VirtualAware.Plugin\VirtualAware.Plugin.csproj", "{1A9CA587-7AEC-4EE0-9FB5-0B6DB718FDE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{0618B96E-951E-4E23-A4EF-5D6AA06F9CF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0618B96E-951E-4E23-A4EF-5D6AA06F9CF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0618B96E-951E-4E23-A4EF-5D6AA06F9CF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A9CA587-7AEC-4EE0-9FB5-0B6DB718FDE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A9CA587-7AEC-4EE0-9FB5-0B6DB718FDE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A9CA587-7AEC-4EE0-9FB5-0B6DB718FDE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A9CA587-7AEC-4EE0-9FB5-0B6DB718FDE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

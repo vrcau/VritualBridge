@@ -17,6 +17,8 @@ public class DataTransferService : IDataTransferService
 
     public event EventHandler<IDataTransferObject>? ReceivedData;
 
+    private readonly Dictionary<string, DataTransferReceiverRegisterOption> _receivers = new();
+
     public DataTransferService(ILogger<DataTransferService> logger, VRChatLogWatcherService vrchatLogWatcherService)
     {
         _logger = logger;
@@ -42,12 +44,12 @@ public class DataTransferService : IDataTransferService
             TimeStamp = DateTimeOffset.Now,
             Type = type
         };
-        
+
         _dataTransferObjects.Add(dto);
         _logger.LogInformation("Send data to game: {@Dto}", dto);
     }
 
-    private void ProcessData(string rawContent)
+    public void ProcessData(string rawContent)
     {
         if (!rawContent.StartsWith("[vbdt]")) return;
 
@@ -60,13 +62,41 @@ public class DataTransferService : IDataTransferService
                 _logger.LogWarning("Received Invalid Data: {RawContent}", rawContent);
                 return;
             }
-            
+
             _logger.LogInformation("Received Data: {Dto}", dto);
             ReceivedData?.Invoke(this, dto);
+
+            if (!_receivers.TryGetValue(dto.Type, out var registerOption)) return;
+            
+            if (registerOption.Type != null)
+            {
+                registerOption.Delegate.DynamicInvoke(JsonSerializer.Deserialize(content,
+                    typeof(DataTransferObject<>).MakeGenericType(registerOption.Type)));
+                    
+                return;
+            }
+
+            registerOption.Delegate.DynamicInvoke(dto);
         }
         catch (Exception e)
         {
             _logger.LogWarning(e, "Received Invalid Data or Fail to Process Data: {RawContent}", rawContent);
         }
+    }
+
+    public void RegisterReceiver(string type, Action<IDataTransferObject> action)
+    {
+        if (_receivers.ContainsKey(type))
+            throw new ArgumentException($"type {type} already registered", type);
+        
+        _receivers.Add(type, new DataTransferReceiverRegisterOption(action));
+    }
+
+    public void RegisterReceiver<T>(string type, Action<IDataTransferObject<T>> action)
+    {
+        if (_receivers.ContainsKey(type))
+            throw new ArgumentException($"type {type} already registered", type);
+        
+        _receivers.Add(type, new DataTransferReceiverRegisterOption(action, typeof(T)));
     }
 }

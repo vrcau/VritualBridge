@@ -12,5 +12,5 @@ public interface IDataTransferObject
 
 public interface IDataTransferObject<T> : IDataTransferObject
 {
-    [JsonPropertyName("data")] public new object? Data { get; }
+    [JsonPropertyName("data")] public new T? Data { get; }
 }
